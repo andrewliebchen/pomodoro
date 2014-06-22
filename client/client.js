@@ -10,12 +10,12 @@ Template.todos.todo = function() {
 }
 
 Template.timer.events({
- 'click #cd_toggle' : function() {
+ 'click #timer_toggle' : function() {
     if(Session.get('onPomodoro')) {
       $.APP.pauseTimer();
       Session.set('onPomodoro', null);
     } else {
-      $.APP.startTimer('cd');
+      $.APP.startTimer('timer');
       console.log('start');
       Session.set('onPomodoro', true);
     }

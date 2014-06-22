@@ -34,7 +34,7 @@
             $.APP.t1 = $.APP.d1.getTime();
 
             // if countdown add ms based on seconds in textfield
-            if ($.APP.dir === 'cd') {
+            if ($.APP.dir === 'timer') {
               // countdown value in seconds
               $.APP.t1 += 1500*1000;
             }
@@ -43,7 +43,6 @@
         }
         // reset state
         $.APP.state = 'alive';
-        $('#' + $.APP.dir + '_status').html('Running');
 
         // start loop
         $.APP.loopTimer();
@@ -59,13 +58,11 @@
 
         // set state
         $.APP.state = 'pause';
-        $('#' + $.APP.dir + '_status').html('Paused');
       },
 
       stopTimer : function() {
         // set state
         $.APP.state = 'stop';
-        $('#' + $.APP.dir + '_status').html('Stopped');
       },
 
       resetTimer : function() {
@@ -74,7 +71,6 @@
 
         // set state
         $.APP.state = 'reset';
-        $('#' + $.APP.dir + '_status').html('Reset & Idle again');
       },
 
       endTimer : function(callback) {
@@ -112,7 +108,6 @@
               // if time difference is 0 end countdown
               $.APP.endTimer(function(){
                 $.APP.resetTimer();
-                $('#' + $.APP.dir + '_status').html('Ended & Reset');
               });
             }
           }
