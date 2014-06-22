@@ -7,23 +7,39 @@ $max-width: 100%;
 
 $fontSizeBase: 16px;
 
-// $colorPomodoro: rgb(253, 9, 48);
 $colorPomodoro: rgb(222, 52, 24);
+
+@mixin circle($size) {
+  $halfSize:  $size / 2;
+  @include size($size);
+  border-radius: $halfSize;
+}
 
 body,
 html {
   color: #333;
-  font-family: $helvetica;
+  font-family: "avenir next", avenir, $helvetica;
   font-size: $fontSizeBase;
   line-height: $unit;
 }
 
-.section {
+a {
+  cursor: pointer;
+}
+
+%section {
   @include size(100vw 100vh);
   @include pad(default);
+  @include position(absolute, 0px 0 0 0px);
+  display: none;
+
+  &.is-current {
+    display: block;
+  }
 }
 
 .timer {
+  @extend %section;
   color: $colorPomodoro;
 
   &.on-pomodoro {
@@ -32,23 +48,70 @@ html {
   }
 }
 
-.pomodoros {
+.timer-toggle {
+  $size: 6em;
+  $margin:  -($size / 2);
+  @include circle($size);
+  @include position(absolute, 33% 0 0 50%);
+  background-color: $colorPomodoro;
+  color: white;
+  cursor: pointer;
+  font-size: 3em;
+  line-height: $size;
+  margin: $margin 0 0 $margin;
+  text-align: center;
 
+  .on-pomodoro & {
+    color: $colorPomodoro;
+    background-color: white;
+  }
 }
 
-.pomodoro {
-  @include size(2em);
+.pomodoros-toggle {
+  $size: 3em;
+  $margin: -($size / 2);
+  @include circle($size);
+  @include position(absolute, 0 0 15% 50%);
+  margin: $margin 0 0 $margin;
+  background-color: $colorPomodoro;
+  display: block;
+
+  .on-pomodoro & {
+    background-color: white;
+  }
+}
+
+.pomodoros {
+  @extend %section;
+}
+
+%pomodoro {
+  $size: 12em;
+  @include circle($size);
+  float: left;
   margin: 1em;
-  border: 1px solid $colorPomodoro;
-  border-radius: 1em;
+  background-color: $colorPomodoro;
+  cursor: pointer;
+  line-height: $size;
 
   &.is-selected {
     background-color: $colorPomodoro;
   }
 }
 
-.todos {
+.pomodoro {
+  @extend %pomodoro;
+}
 
+.pomodoro-new {
+  @extend %pomodoro;
+  background-color: transparent;
+  border: 2px dashed $colorPomodoro;
+  text-align: center;
+}
+
+.todos {
+  @extend %section;
 }
 
 .todo {

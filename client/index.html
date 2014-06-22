@@ -11,24 +11,27 @@
 </body>
 
 <template name="timer">
-  <section id="timer_toggle" class="section timer">
-    <span id="timer_m">25</span>:
-    <span id="timer_s">00</span>
+  <section class="timer is-current">
+    <div id="timer_toggle" class="timer-toggle">
+      <b id="timer_m">25</b>:<b id="timer_s">00</b>
+    </div>
+    <a class="pomodoros-toggle"></a>
   </section>
 </template>
 
 <template name="pomodoros">
-  <section class="section pomodoros">
+  <section class="pomodoros">
+    <div id="new_pomodoro" class="pomodoro-new">
+      <button>New Pomodoro</button>
+    </div>
     {{#each pomodoro}}
-      <div class="pomodoro">
-      </div>
+      <div class="pomodoro"></div>
     {{/each}}
-    <button id="new_pomodoro">New Pomodoro</button>
   </section>
 </template>
 
 <template name="todos">
-  <section class="section todos">
+  <section class="todos">
     <ul class="todo-list">
       {{#each todo}}
         <li class="todo">

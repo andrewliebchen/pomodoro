@@ -20,6 +20,11 @@ Template.timer.events({
       Session.set('onPomodoro', true);
       $('.timer').addClass('on-pomodoro');
     }
+ },
+
+ 'click .pomodoros-toggle' : function(event) {
+    $('.is-current').removeClass('is-current');
+    $('.pomodoros').addClass('is-current');
  }
 });
 
