@@ -1,11 +1,6 @@
 Session.setDefault('currentPomodoro', null);
 Session.setDefault('onPomodoro', null);
 
-// Done sound...put in the right place
-// var s = new buzz.sound('/sounds/done.mp3');
-// s.play();
-
-
 Template.pomodoros.pomodoro = function() {
   return Pomodoros.find({}, {time: -1});
 };

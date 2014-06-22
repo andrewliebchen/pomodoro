@@ -35,7 +35,7 @@
 
             // if countdown add ms based on seconds in textfield
             if ($.APP.dir === 'timer') {
-              // countdown value in seconds
+              // countdown value in seconds (25 minutes)
               $.APP.t1 += 1500*1000;
             }
 
@@ -74,8 +74,13 @@
       },
 
       endTimer : function(callback) {
-        // set state
+        var s = new buzz.sound('/sounds/done.mp3');
+
+        // set end state
         $.APP.state = 'end';
+
+        // Play sound
+        s.play();
 
         // invoke callback
         if (typeof callback === 'function') {
@@ -99,10 +104,10 @@
 
           // calculate time difference between
           // initial and current timestamp
-          if ($.APP.dir === 'sw') {
-            td = t2 - $.APP.t1;
-          // reversed if countdown
-          } else {
+          // if ($.APP.dir === 'sw') {
+          //   td = t2 - $.APP.t1;
+          // // reversed if countdown
+          // } else {
             td = $.APP.t1 - t2;
             if (td <= 0) {
               // if time difference is 0 end countdown
@@ -110,7 +115,7 @@
                 $.APP.resetTimer();
               });
             }
-          }
+          // }
 
           // calculate milliseconds
           ms = td%1000;
@@ -145,10 +150,8 @@
           sText = $.APP.formatTimer(s);
 
           // update display
-          // $('#' + $.APP.dir + '_ms').html($.APP.formatTimer(ms));
           $('#' + $.APP.dir + '_s').html(sText);
           $('#' + $.APP.dir + '_m').html(mText);
-          // $('#' + $.APP.dir + '_h').html($.APP.formatTimer(h));
 
           // update the title
           title = 'pomodoro'
@@ -156,6 +159,7 @@
 
           // loop
           $.APP.t = setTimeout($.APP.loopTimer,1);
+
         } else {
           // kill loop
           clearTimeout($.APP.t);
