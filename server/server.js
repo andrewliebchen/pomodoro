@@ -1,7 +1,13 @@
 Meteor.startup(function() {
-  // code to run on server at startup
+  // Todos.remove({});
 });
 
-Meteor.methods(function() {
-
+Meteor.methods({
+  addTodo: function(options) {
+    Todos.insert({
+      title:    options.title,
+      pomodoro: options.pomodoro,
+      time:     options.time
+    });
+  },
 });

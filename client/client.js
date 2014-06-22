@@ -1,8 +1,12 @@
 Session.setDefault('currentPomodoro', null);
 
-Template.pomodoros.pomodoro = function () {
+Template.pomodoros.pomodoro = function() {
   return Pomodoros.find({}, {time: -1});
 };
+
+Template.todos.todo = function() {
+  return Todos.find({}, {time: -1});
+}
 
 Template.timer.events({
  'click #cd_start' : function() {
@@ -31,7 +35,25 @@ Template.pomodoros.events({
     Session.set('currentPomodoro', this._id);
     console.log(this._id + ' is the current pomodoro');
 
-    $('.is-selected').removeClass('is-selected');
+    // $('.is-selected').removeClass('is-selected');
     $this.addClass('is-selected');
+  }
+});
+
+Template.todos.events({
+  'keydown .todo-add' : function(event) {
+    event.stopPropagation();
+    if (event.which == 13) {
+      var $todo = $(event.target);
+      var todoContent = $todo.val();
+      if(todoContent != '') {
+        Meteor.call('addTodo', {
+          title:     todoContent,
+          pomodoro: Session.get('currentPomodoro'),
+          time:     Date.now()
+        });
+        $todo.val('');
+      }
+    }
   }
 });

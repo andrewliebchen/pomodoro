@@ -34,6 +34,9 @@
 
 <template name="todos">
   <ul class="todos">
-    <li class="todo">This is a todo</li>
+    {{#each todo}}
+      <li class="todo">{{title}}</li>
+    {{/each}}
+    <li class="todo"><input type="text" class="todo-add" placeholder="Add a todo and press 'enter'"></li>
   </ul>
 </template>

@@ -13,11 +13,3 @@ html {
   margin-bottom: 1em;
   border: 1px solid black;
 }
-
-.pomodoro.is-selected .todos {
-  display: block;
-}
-
-.todos {
-  display: none;
-}
