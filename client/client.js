@@ -14,10 +14,11 @@ Template.timer.events({
     if(Session.get('onPomodoro')) {
       $.APP.pauseTimer();
       Session.set('onPomodoro', null);
+      $('.timer').removeClass('on-pomodoro');
     } else {
       $.APP.startTimer('timer');
-      console.log('start');
       Session.set('onPomodoro', true);
+      $('.timer').addClass('on-pomodoro');
     }
  }
 });

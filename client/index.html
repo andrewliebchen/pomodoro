@@ -3,38 +3,42 @@
 </head>
 
 <body>
-  {{> timer}}
-  {{> pomodoros}}
-  {{> todos}}
+  <div class="wrapper">
+    {{> timer}}
+    {{> pomodoros}}
+    {{> todos}}
+  </div>
 </body>
 
 <template name="timer">
-  <div id="timer_toggle" class="timer">
+  <section id="timer_toggle" class="section timer">
     <span id="timer_m">25</span>:
     <span id="timer_s">00</span>
-  </div>
+  </section>
 </template>
 
 <template name="pomodoros">
-  <div class="pomodoros">
+  <section class="section pomodoros">
     {{#each pomodoro}}
       <div class="pomodoro">
       </div>
     {{/each}}
     <button id="new_pomodoro">New Pomodoro</button>
-  </div>
+  </section>
 </template>
 
 <template name="todos">
-  <ul class="todos">
-    {{#each todo}}
+  <section class="section todos">
+    <ul class="todo-list">
+      {{#each todo}}
+        <li class="todo">
+          <input type="checkbox">
+          {{title}}
+        </li>
+      {{/each}}
       <li class="todo">
-        <input type="checkbox">
-        {{title}}
+        <input type="text" class="todo-add" placeholder="Add a todo and press 'enter'">
       </li>
-    {{/each}}
-    <li class="todo">
-      <input type="text" class="todo-add" placeholder="Add a todo and press 'enter'">
-    </li>
-  </ul>
+    </ul>
+  </section>
 </template>

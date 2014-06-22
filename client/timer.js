@@ -141,11 +141,18 @@
           s  = s-(m*60);
           m  = m-(h*60);
 
+          mText = $.APP.formatTimer(m);
+          sText = $.APP.formatTimer(s);
+
           // update display
-          $('#' + $.APP.dir + '_ms').html($.APP.formatTimer(ms));
-          $('#' + $.APP.dir + '_s').html($.APP.formatTimer(s));
-          $('#' + $.APP.dir + '_m').html($.APP.formatTimer(m));
-          $('#' + $.APP.dir + '_h').html($.APP.formatTimer(h));
+          // $('#' + $.APP.dir + '_ms').html($.APP.formatTimer(ms));
+          $('#' + $.APP.dir + '_s').html(sText);
+          $('#' + $.APP.dir + '_m').html(mText);
+          // $('#' + $.APP.dir + '_h').html($.APP.formatTimer(h));
+
+          // update the title
+          title = 'pomodoro'
+          $(document).attr('title', title + ' ' + mText + ':' + sText );
 
           // loop
           $.APP.t = setTimeout($.APP.loopTimer,1);

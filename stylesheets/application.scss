@@ -1,0 +1,58 @@
+@import "packages/bourbon/bourbon";
+@import "packages/neat/neat-helpers";
+$unit: 2em;
+$gutter: $unit;
+$max-width: 100%;
+@import "packages/neat/neat";
+
+$fontSizeBase: 16px;
+
+// $colorPomodoro: rgb(253, 9, 48);
+$colorPomodoro: rgb(222, 52, 24);
+
+body,
+html {
+  color: #333;
+  font-family: $helvetica;
+  font-size: $fontSizeBase;
+  line-height: $unit;
+}
+
+.section {
+  @include size(100vw 100vh);
+  @include pad(default);
+}
+
+.timer {
+  color: $colorPomodoro;
+
+  &.on-pomodoro {
+    background-color: $colorPomodoro;
+    color: white;
+  }
+}
+
+.pomodoros {
+
+}
+
+.pomodoro {
+  @include size(2em);
+  margin: 1em;
+  border: 1px solid $colorPomodoro;
+  border-radius: 1em;
+
+  &.is-selected {
+    background-color: $colorPomodoro;
+  }
+}
+
+.todos {
+
+}
+
+.todo {
+  &.is-done {
+    text-decoration: line-through;
+  }
+}
