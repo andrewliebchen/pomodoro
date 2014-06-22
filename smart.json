@@ -3,6 +3,7 @@
     "scss": {},
     "bourbon": {},
     "normalize.css": {},
-    "neat": {}
+    "neat": {},
+    "buzz.js": {}
   }
 }
