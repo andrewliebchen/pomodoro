@@ -3,27 +3,37 @@
 </head>
 
 <body>
-  {{> hello}}
   {{> timer}}
+  {{> pomodoros}}
 </body>
 
-<template name="hello">
-  <h1>Hello World!</h1>
-  {{greeting}}
-  <input type="button" value="Click" />
+<template name="timer">
+  <div class="timer">
+    <span id="cd_m">25</span>:
+    <span id="cd_s">00</span>
+  </div>
+  <div class="timer-controls">
+    <input type="button" value="Start" id="cd_start">
+    <input type="button" value="Pause" id="cd_pause">
+    <input type="button" value="Stop"  id="cd_stop">
+    <input type="button" value="Reset" id="cd_reset">
+    <span id="cd_status">Idle</span>
+  </div>
 </template>
 
-<template name="timer">
-  <div>
-      <h1>Countdown</h1>
-      <span id="cd_m">25</span>:
-      <span id="cd_s">00</span>
-      <br/>
-      <br/>
-      <input type="button" value="Start" id="cd_start" />
-      <input type="button" value="Pause" id="cd_pause" />
-      <input type="button" value="Stop"  id="cd_stop" />
-      <input type="button" value="Reset" id="cd_reset" />
-      <span id="cd_status">Idle</span>
+<template name="pomodoros">
+  <div class="pomodoros">
+    {{#each pomodoro}}
+      <div class="pomodoro">
+        {{> todos}}
+      </div>
+    {{/each}}
+    <button id="new_pomodoro">New Pomodoro</button>
   </div>
+</template>
+
+<template name="todos">
+  <ul class="todos">
+    <li class="todo">This is a todo</li>
+  </ul>
 </template>

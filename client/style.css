@@ -1,9 +1,23 @@
 body,
 html {
-  width: 600px;
+  color: #333;
   font-family: "helvetica neue", helvetica, sans-serif;
   font-size: 16px;
   line-height: 1.5;
-  color: #333;
   margin: 0 auto;
+  width: 600px;
+}
+
+.pomodoro {
+  min-height: 2em;
+  margin-bottom: 1em;
+  border: 1px solid black;
+}
+
+.pomodoro.is-selected .todos {
+  display: block;
+}
+
+.todos {
+  display: none;
 }
