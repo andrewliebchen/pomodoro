@@ -10,19 +10,16 @@ Template.todos.todo = function() {
 }
 
 Template.timer.events({
- 'click #cd_start' : function() {
-    $.APP.startTimer('cd');
-    Session.set('onPomodoro', true);
- },
-
- 'click #cd_pause' : function() {
-    $.APP.pauseTimer();
-    Session.set('onPomodoro', null);
- },
-
- 'click #cd_reset' : function() {
-    $.APP.resetTimer();
- },
+ 'click #cd_toggle' : function() {
+    if(Session.get('onPomodoro')) {
+      $.APP.pauseTimer();
+      Session.set('onPomodoro', null);
+    } else {
+      $.APP.startTimer('cd');
+      console.log('start');
+      Session.set('onPomodoro', true);
+    }
+ }
 });
 
 Template.pomodoros.events({
