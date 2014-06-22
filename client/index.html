@@ -16,7 +16,6 @@
   <div class="timer-controls">
     <input type="button" value="Start" id="cd_start">
     <input type="button" value="Pause" id="cd_pause">
-    <input type="button" value="Stop"  id="cd_stop">
     <input type="button" value="Reset" id="cd_reset">
     <span id="cd_status">Idle</span>
   </div>
@@ -35,8 +34,13 @@
 <template name="todos">
   <ul class="todos">
     {{#each todo}}
-      <li class="todo">{{title}}</li>
+      <li class="todo">
+        <input type="checkbox">
+        {{title}}
+      </li>
     {{/each}}
-    <li class="todo"><input type="text" class="todo-add" placeholder="Add a todo and press 'enter'"></li>
+    <li class="todo">
+      <input type="text" class="todo-add" placeholder="Add a todo and press 'enter'">
+    </li>
   </ul>
 </template>

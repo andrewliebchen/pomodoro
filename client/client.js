@@ -1,4 +1,5 @@
 Session.setDefault('currentPomodoro', null);
+Session.setDefault('onPomodoro', null);
 
 Template.pomodoros.pomodoro = function() {
   return Pomodoros.find({}, {time: -1});
@@ -11,15 +12,16 @@ Template.todos.todo = function() {
 Template.timer.events({
  'click #cd_start' : function() {
     $.APP.startTimer('cd');
+    Session.set('onPomodoro', true);
  },
- 'click #cd_stop' : function() {
-    $.APP.stopTimer();
- },
- 'click #cd_reset' : function() {
-    $.APP.resetTimer();
- },
+
  'click #cd_pause' : function() {
     $.APP.pauseTimer();
+    Session.set('onPomodoro', null);
+ },
+
+ 'click #cd_reset' : function() {
+    $.APP.resetTimer();
  },
 });
 
@@ -55,5 +57,10 @@ Template.todos.events({
         $todo.val('');
       }
     }
+  },
+
+  'click .todo input[type="checkbox"]' : function(event) {
+    var $this = $(event.target);
+    $this.closest('.todo').toggleClass('is-done');
   }
 });

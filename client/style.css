@@ -20,6 +20,10 @@ html {
   background-color: black;
 }
 
+.todo.is-done {
+  text-decoration: line-through;
+}
+
 
 /*.todos {
   display: none;
