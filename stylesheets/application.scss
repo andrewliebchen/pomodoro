@@ -9,6 +9,8 @@ $fontSizeBase: 16px;
 
 $colorPomodoro: rgb(222, 52, 24);
 
+$transitionTimer: "0.1s ease-out";
+
 @mixin circle($size) {
   $halfSize:  $size / 2;
   @include size($size);
@@ -40,6 +42,7 @@ a {
 
 .timer {
   @extend %section;
+  @include transition(background-color #{$transitionTimer}, color #{$transitionTimer});
   color: $colorPomodoro;
 
   &.on-pomodoro {

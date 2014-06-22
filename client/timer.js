@@ -2,6 +2,9 @@
 
 
 (function($){
+  var timerMinutes = 25;
+  var timerTotal = (timerMinutes * 60) * 1000;
+
   $.extend({
     APP : {
       formatTimer : function(a) {
@@ -34,10 +37,7 @@
             $.APP.t1 = $.APP.d1.getTime();
 
             // if countdown add ms based on seconds in textfield
-            if ($.APP.dir === 'timer') {
-              // countdown value in seconds (25 minutes)
-              $.APP.t1 += 1500*1000;
-            }
+            $.APP.t1 += timerTotal;
 
           break;
         }
@@ -66,21 +66,13 @@
       },
 
       resetTimer : function() {
-        // reset display
-        $('#' + $.APP.dir + '_ms,#' + $.APP.dir + '_s,#' + $.APP.dir + '_m,#' + $.APP.dir + '_h').html('00');
-
         // set state
         $.APP.state = 'reset';
       },
 
       endTimer : function(callback) {
-        var s = new buzz.sound('/sounds/done.mp3');
-
         // set end state
         $.APP.state = 'end';
-
-        // Play sound
-        s.play();
 
         // invoke callback
         if (typeof callback === 'function') {
@@ -101,21 +93,22 @@
           // timestamp for calculations
           d2 = new Date();
           t2 = d2.getTime();
+          td = $.APP.t1 - t2;
+          if (td <= 0) {
+            // if time difference is 0 end countdown
+            $.APP.endTimer(function(){
+              // Play sound
+              var s = new buzz.sound('/sounds/done.mp3');
+              s.play();
 
-          // calculate time difference between
-          // initial and current timestamp
-          // if ($.APP.dir === 'sw') {
-          //   td = t2 - $.APP.t1;
-          // // reversed if countdown
-          // } else {
-            td = $.APP.t1 - t2;
-            if (td <= 0) {
-              // if time difference is 0 end countdown
-              $.APP.endTimer(function(){
-                $.APP.resetTimer();
-              });
-            }
-          // }
+              Session.set('onPomodoro', null);
+
+              $('.timer').removeClass('on-pomodoro');
+              $.APP.t1 += timerTotal;
+
+              $.APP.resetTimer();
+            });
+          }
 
           // calculate milliseconds
           ms = td%1000;
