@@ -5,6 +5,7 @@
 <body>
   {{> timer}}
   {{> pomodoros}}
+  {{> todos}}
 </body>
 
 <template name="timer">
@@ -25,7 +26,6 @@
   <div class="pomodoros">
     {{#each pomodoro}}
       <div class="pomodoro">
-        {{> todos}}
       </div>
     {{/each}}
     <button id="new_pomodoro">New Pomodoro</button>

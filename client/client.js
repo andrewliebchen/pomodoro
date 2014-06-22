@@ -5,7 +5,7 @@ Template.pomodoros.pomodoro = function() {
 };
 
 Template.todos.todo = function() {
-  return Todos.find({}, {time: -1});
+  return Todos.find({pomodoro: Session.get('currentPomodoro')}, {time: -1});
 }
 
 Template.timer.events({
@@ -35,7 +35,7 @@ Template.pomodoros.events({
     Session.set('currentPomodoro', this._id);
     console.log(this._id + ' is the current pomodoro');
 
-    // $('.is-selected').removeClass('is-selected');
+    $('.is-selected').removeClass('is-selected');
     $this.addClass('is-selected');
   }
 });

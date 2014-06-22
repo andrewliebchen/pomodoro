@@ -9,7 +9,22 @@ html {
 }
 
 .pomodoro {
-  min-height: 2em;
-  margin-bottom: 1em;
+  height: 2em;
+  width: 2em;
+  margin: 1em;
   border: 1px solid black;
+  border-radius: 1em;
 }
+
+.pomodoro.is-selected {
+  background-color: black;
+}
+
+
+/*.todos {
+  display: none;
+}
+
+.pomodoro.is-selected .todos {
+  display: block;
+}*/
