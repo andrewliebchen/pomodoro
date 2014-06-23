@@ -9,6 +9,13 @@ Template.todos.todo = function() {
   return Todos.find({pomodoro: Session.get('currentPomodoro')}, {time: -1});
 }
 
+Template.timerSection.events({
+  'click .pomodoros-toggle' : function(event) {
+     $('.is-current').removeClass('is-current');
+     $('.pomodoros').addClass('is-current');
+  }
+});
+
 Template.timer.events({
  'click #timer_toggle' : function() {
     if(Session.get('onPomodoro')) {
@@ -20,11 +27,6 @@ Template.timer.events({
       Session.set('onPomodoro', true);
       $('.timer').addClass('on-pomodoro');
     }
- },
-
- 'click .pomodoros-toggle' : function(event) {
-    $('.is-current').removeClass('is-current');
-    $('.pomodoros').addClass('is-current');
  }
 });
 

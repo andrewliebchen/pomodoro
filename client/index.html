@@ -4,19 +4,23 @@
 
 <body>
   <div class="wrapper">
-    {{> timer}}
+    {{> timerSection}}
     {{> pomodoros}}
     {{> todos}}
   </div>
 </body>
 
-<template name="timer">
+<template name="timerSection">
   <section class="timer is-current">
-    <div id="timer_toggle" class="timer-toggle">
-      <b id="timer_m">25</b>:<b id="timer_s">00</b>
-    </div>
+    {{> timer}}
     <a class="pomodoros-toggle"></a>
   </section>
+</template>
+
+<template name="timer">
+  <div id="timer_toggle" class="timer-toggle">
+    <b id="timer_m">25</b>:<b id="timer_s">00</b>
+  </div>
 </template>
 
 <template name="pomodoros">
