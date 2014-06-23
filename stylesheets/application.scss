@@ -17,6 +17,24 @@ $transitionTimer: "0.1s ease-out";
   border-radius: $halfSize;
 }
 
+@mixin outlineHover($large: false) {
+  &:hover {
+    @include transition(box-shadow 0.1s ease-in-out);
+
+    @if $large == false {
+      box-shadow: 0 0 0 2px white, 0 0 0 4px $colorPomodoro;
+    } @else {
+      box-shadow: 0 0 0 3px white, 0 0 0 6px $colorPomodoro;
+    }
+  }
+
+  .on-pomodoro & {
+    &:hover {
+      box-shadow: 0 0 0 2px $colorPomodoro, 0 0 0 4px white;
+    }
+  }
+}
+
 body,
 html {
   color: #333;
@@ -29,22 +47,36 @@ a {
   cursor: pointer;
 }
 
-%section {
-  @include size(100vw 100vh);
+button {
+  @include appearance(none);
+  @include outlineHover;
+  background-color: transparent;
+  border: 0;
+  background-color: $colorPomodoro;
+  color: white;
+  font-weight: bold;
+  height: $unit;
+  padding: 0 1em;
+  line-height: $unit;
+  border-radius: 3px;
+  outline: none;
+
+  &:active {
+    background-color: shade($colorPomodoro, 10%);
+  }
+}
+
+.section {
   @include pad(default);
   @include position(absolute, 0px 0 0 0px);
   background-color: white;
   display: none;
+  width: 100vw;
+  min-height: 100vh;
 
   &.is-current {
     display: block;
   }
-}
-
-.timer {
-  @extend %section;
-  @include transition(background-color #{$transitionTimer}, color #{$transitionTimer});
-  color: $colorPomodoro;
 
   &.on-pomodoro {
     background-color: $colorPomodoro;
@@ -52,22 +84,26 @@ a {
   }
 }
 
+.timer {
+  @include transition(background-color #{$transitionTimer}, color #{$transitionTimer});
+  color: $colorPomodoro;
+}
+
 .timer-toggle {
   $size: 6em;
   $margin:  -($size / 2);
-  @include transition(box-shadow 0.1s ease-in-out);
+  @include outlineHover($large: true);
   @include circle($size);
-  @include position(absolute, 33% 0 0 50%);
   background-color: $colorPomodoro;
   color: white;
   cursor: pointer;
   font-size: 3em;
   line-height: $size;
-  margin: $margin 0 0 $margin;
   text-align: center;
 
-  &:hover {
-    box-shadow: 0 0 0 10px rgba(black, 0.2);
+  .timer & {
+    @include position(absolute, 33% 0 0 50%);
+    margin: $margin 0 0 $margin;
   }
 
   .on-pomodoro & {
@@ -79,16 +115,12 @@ a {
 .pomodoros-toggle {
   $size: 3em;
   $margin: -($size / 2);
-  @include transition(box-shadow 0.1s ease-in-out);
+  @include outlineHover;
   @include circle($size);
   @include position(absolute, 0 0 15% 50%);
   margin: $margin 0 0 $margin;
   background-color: $colorPomodoro;
   display: block;
-
-  &:hover {
-    box-shadow: 0 0 0 5px rgba(black, 0.2);
-  }
 
   .on-pomodoro & {
     background-color: white;
@@ -96,7 +128,7 @@ a {
 }
 
 .pomodoros {
-  @extend %section;
+
 }
 
 %pomodoro {
@@ -115,6 +147,7 @@ a {
 
 .pomodoro {
   @extend %pomodoro;
+  @include outlineHover($large: true);
 }
 
 .pomodoro-new {
@@ -125,7 +158,9 @@ a {
 }
 
 .todos {
-  @extend %section;
+  .timer-toggle {
+    margin: 0 auto $unit;
+  }
 }
 
 .todo {

@@ -103,7 +103,7 @@
 
               Session.set('onPomodoro', null);
 
-              $('.timer').removeClass('on-pomodoro');
+              $('.section.on-pomodoro').removeClass('on-pomodoro');
               $.APP.t1 += timerTotal;
 
               $.APP.resetTimer();
@@ -143,8 +143,8 @@
           sText = $.APP.formatTimer(s);
 
           // update display
-          $('#' + $.APP.dir + '_s').html(sText);
-          $('#' + $.APP.dir + '_m').html(mText);
+          $('.' + $.APP.dir + '-s').html(sText);
+          $('.' + $.APP.dir + '-m').html(mText);
 
           // update the title
           title = 'pomodoro'

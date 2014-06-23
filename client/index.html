@@ -5,26 +5,26 @@
 <body>
   <div class="wrapper">
     {{> timerSection}}
-    {{> pomodoros}}
-    {{> todos}}
+    {{> pomodorosSection}}
+    {{> todosSection}}
   </div>
 </body>
 
 <template name="timerSection">
-  <section class="timer is-current">
+  <section class="section timer is-current">
     {{> timer}}
     <a class="pomodoros-toggle"></a>
   </section>
 </template>
 
 <template name="timer">
-  <div id="timer_toggle" class="timer-toggle">
-    <b id="timer_m">25</b>:<b id="timer_s">00</b>
+  <div class="timer-toggle">
+    <b class="timer-m">25</b>:<b class="timer-s">00</b>
   </div>
 </template>
 
-<template name="pomodoros">
-  <section class="pomodoros">
+<template name="pomodorosSection">
+  <section class="section pomodoros">
     <div id="new_pomodoro" class="pomodoro-new">
       <button>New Pomodoro</button>
     </div>
@@ -34,8 +34,9 @@
   </section>
 </template>
 
-<template name="todos">
-  <section class="todos">
+<template name="todosSection">
+  <section class="section todos">
+    {{> timer}}
     <ul class="todo-list">
       {{#each todo}}
         <li class="todo">

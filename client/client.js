@@ -1,36 +1,37 @@
 Session.setDefault('currentPomodoro', null);
 Session.setDefault('onPomodoro', null);
 
-Template.pomodoros.pomodoro = function() {
+Template.pomodorosSection.pomodoro = function() {
   return Pomodoros.find({}, {time: -1});
 };
 
-Template.todos.todo = function() {
+Template.todosSection.todo = function() {
   return Todos.find({pomodoro: Session.get('currentPomodoro')}, {time: -1});
 }
 
 Template.timerSection.events({
   'click .pomodoros-toggle' : function(event) {
-     $('.is-current').removeClass('is-current');
-     $('.pomodoros').addClass('is-current');
+     $('.section.is-current').removeClass('is-current');
+     $('.section.pomodoros').addClass('is-current');
   }
 });
 
 Template.timer.events({
- 'click #timer_toggle' : function() {
+ 'click .timer-toggle' : function(event) {
+    var $this = $(event.target);
     if(Session.get('onPomodoro')) {
       $.APP.pauseTimer();
       Session.set('onPomodoro', null);
-      $('.timer').removeClass('on-pomodoro');
+      $this.closest('.section').removeClass('on-pomodoro');
     } else {
       $.APP.startTimer('timer');
       Session.set('onPomodoro', true);
-      $('.timer').addClass('on-pomodoro');
+      $this.closest('.section').addClass('on-pomodoro');
     }
  }
 });
 
-Template.pomodoros.events({
+Template.pomodorosSection.events({
   'click #new_pomodoro' : function(event) {
     event.preventDefault();
     Pomodoros.insert({});
@@ -40,14 +41,12 @@ Template.pomodoros.events({
     event.preventDefault();
     var $this = $(event.target);
     Session.set('currentPomodoro', this._id);
-    console.log(this._id + ' is the current pomodoro');
-
-    $('.is-selected').removeClass('is-selected');
-    $this.addClass('is-selected');
+    $('.section.is-current').removeClass('is-current');
+    $('.section.todos').addClass('is-current');
   }
 });
 
-Template.todos.events({
+Template.todosSection.events({
   'keydown .todo-add' : function(event) {
     event.stopPropagation();
     if (event.which == 13) {
