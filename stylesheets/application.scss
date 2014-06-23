@@ -113,12 +113,14 @@ button {
 }
 
 .pomodoros-toggle {
-  $size: 3em;
+  $size: 4em;
   $margin: -($size / 2);
   @include outlineHover;
   @include circle($size);
-  @include position(absolute, 0 0 15% 50%);
-  margin: $margin 0 0 $margin;
+  @include position(absolute, 0 0 0px 50%);
+  @include border-bottom-radius(0);
+  height: $size / 2;
+  margin: 0 0 0px $margin;
   background-color: $colorPomodoro;
   display: block;
 
