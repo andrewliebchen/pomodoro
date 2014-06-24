@@ -68,15 +68,9 @@ button {
 
 .section {
   @include pad(default);
-  @include position(absolute, 0px 0 0 0px);
   background-color: white;
-  display: none;
   width: 100vw;
   min-height: 100vh;
-
-  &.is-current {
-    display: block;
-  }
 
   &.on-pomodoro {
     background-color: $colorPomodoro;
@@ -102,7 +96,7 @@ button {
   text-align: center;
 
   .timer & {
-    @include position(absolute, 33% 0 0 50%);
+    @include position(absolute, 40% 0 0 50%);
     margin: $margin 0 0 $margin;
   }
 
@@ -112,44 +106,25 @@ button {
   }
 }
 
-.pomodoros-toggle {
-  $size: 4em;
-  $margin: -($size / 2);
-  @include outlineHover;
-  @include circle($size);
-  @include position(absolute, 0 0 0px 50%);
-  @include border-bottom-radius(0);
-  height: $size / 2;
-  margin: 0 0 0px $margin;
-  background-color: $colorPomodoro;
-  display: block;
-
-  .on-pomodoro & {
-    background-color: white;
-  }
-}
-
 .pomodoros {
-
+  max-width: 12em * 4;
+  margin: 0 auto;
 }
 
 %pomodoro {
-  $size: 12em;
-  @include circle($size);
-  float: left;
+  $size: 10em;
   margin: 1em;
-  background-color: $colorPomodoro;
-  cursor: pointer;
-  line-height: $size;
-
-  &.is-selected {
-    background-color: $colorPomodoro;
-  }
+  @include size($size);
+  border-radius: $size / 2;
+  padding: 0 1em;
+  float: left;
 }
 
 .pomodoro {
   @extend %pomodoro;
-  @include outlineHover($large: true);
+  @include outlineHover;
+  background-color: $colorPomodoro;
+  color: white;
 }
 
 .pomodoro-new {

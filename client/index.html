@@ -13,7 +13,6 @@
 <template name="timerSection">
   <section class="section timer is-current">
     {{> timer}}
-    <a class="pomodoros-toggle"></a>
   </section>
 </template>
 
@@ -29,7 +28,9 @@
       <button>New Pomodoro</button>
     </div>
     {{#each pomodoro}}
-      <div class="pomodoro"></div>
+      <div class="pomodoro">
+        Mauris iaculis porttitor posuere. Praesent id metus massa, ut blandit odio.
+      </div>
     {{/each}}
   </section>
 </template>
