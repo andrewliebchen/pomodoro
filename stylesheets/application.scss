@@ -96,7 +96,7 @@ button {
   text-align: center;
 
   .timer & {
-    @include position(absolute, 40% 0 0 50%);
+    @include position(absolute, 33% 0 0 50%);
     margin: $margin 0 0 $margin;
   }
 
@@ -106,8 +106,23 @@ button {
   }
 }
 
+.timer-actions {
+  $width: 12.5em;
+  @include position(absolute, 0 0 10% 50%);
+  width: $width;
+  margin-left: -($width / 2);
+
+  div {
+    @include circle(3em);
+    background-color: $colorPomodoro;
+    margin: 0 0.5em;
+    display: inline-block;
+  }
+}
+
 .pomodoros {
   max-width: 12em * 4;
+  padding: 0;
   margin: 0 auto;
 }
 
@@ -116,15 +131,18 @@ button {
   margin: 1em;
   @include size($size);
   border-radius: $size / 2;
-  padding: 0 1em;
   float: left;
+  padding:2em 1em;
+  text-align: center;
+  line-height: 1em;
 }
 
 .pomodoro {
   @extend %pomodoro;
   @include outlineHover;
-  background-color: $colorPomodoro;
-  color: white;
+  // background-color: $colorPomodoro;
+  color: $colorPomodoro;
+  border: 2px solid $colorPomodoro;
 }
 
 .pomodoro-new {
