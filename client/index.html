@@ -10,6 +10,7 @@
   List icon in three buttons turns into an X -->
   <div class="wrapper">
     {{> timer}}
+    {{> todos}}
   </div>
 </body>
 
@@ -21,26 +22,23 @@
       </div>
     </div>
     <div class="timer-actions">
-      <a class="timer-action">R</a>
+      <a class="timer-action">U</a>
       <a class="timer-action">SB</a>
-      <a class="timer-action">L</a>
+      <a class="timer-action todos-toggle">L</a>
     </div>
   </section>
 </template>
 
-<template name="todosSection">
-  <section class="section todos">
-    {{> timer}}
-    <ul class="todo-list">
-      {{#each todo}}
-        <li class="todo">
-          <input type="checkbox">
-          {{title}}
-        </li>
-      {{/each}}
-      <li class="todo">
-        <input type="text" class="todo-add" placeholder="Add a todo and press 'enter'">
-      </li>
-    </ul>
+<template name="todos">
+  <section class="todos">
+    {{#each todo}}
+      <div class="todo">
+        <input type="checkbox">
+        {{title}}
+      </div>
+    {{/each}}
+    <div class="todo">
+      <input type="text" class="todo-add" placeholder="Add a todo and press 'enter'">
+    </div>
   </section>
 </template>

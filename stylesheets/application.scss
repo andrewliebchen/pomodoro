@@ -90,9 +90,14 @@ button {
 }
 
 .timer {
-  @include position(absolute, 20% 0 20% 50%);
+  @include transition(left 0.4s ease-in-out);
+  @include position(fixed, 20% 0 20% 50%);
   margin-left: -($timerSize / 2);
   width: $timerSize;
+
+  .show-todos & {
+    left: 25%;
+  }
 }
 
 .timer-toggle {
@@ -130,4 +135,15 @@ button {
   line-height: $size;
   margin: 0 0.5em;
   text-align: center;
+}
+
+.todos {
+  display: none;
+  width: 50%;
+  @include position(absolute, 0px 0px 0 0);
+  @include pad(0 default 0 0);
+
+  .show-todos & {
+    display: block;
+  }
 }

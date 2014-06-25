@@ -1,8 +1,8 @@
 Session.setDefault('onPomodoro', null);
+Session.setDefault('showTodos', null);
 
 Template.timer.events({
- 'click .timer-toggle' : function(event) {
-    var $this = $(event.target);
+ 'click .timer-toggle' : function() {
     if(Session.get('onPomodoro')) {
       $.APP.pauseTimer();
       Session.set('onPomodoro', null);
@@ -12,5 +12,9 @@ Template.timer.events({
       Session.set('onPomodoro', true);
       $('.wrapper').addClass('on-pomodoro');
     }
- }
+  },
+
+  'click .todos-toggle' : function(event) {
+    $('.wrapper').toggleClass('show-todos');
+  }
 });
