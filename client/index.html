@@ -3,40 +3,28 @@
 </head>
 
 <body>
+  <!-- One list: drag/drop sort order.
+  Three buttons: user, break (press once for short, twice for long), show list
+  List animation: slides in from the right.
+  Velocity: size list items, could order automatically
+  List icon in three buttons turns into an X -->
   <div class="wrapper">
-    {{> timerSection}}
-    {{> pomodorosSection}}
-    {{> todosSection}}
+    {{> timer}}
   </div>
 </body>
 
-<template name="timerSection">
-  <section class="section timer is-current">
-    {{> timer}}
-    <div class="timer-actions">
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
-  </section>
-</template>
-
 <template name="timer">
-  <div class="timer-toggle">
-    <b class="timer-m">25</b>:<b class="timer-s">00</b>
-  </div>
-</template>
-
-<template name="pomodorosSection">
-  <section class="section pomodoros">
-    <div id="new_pomodoro" class="pomodoro-new">
-      <button>New Pomodoro</button>
-    </div>
-    {{#each pomodoro}}
-      <div class="pomodoro">
-        Mauris iaculis porttitor posuere. Praesent id metus massa, ut blandit odio.
+  <section class="timer">
+    <div class="timer-toggle">
+      <div class="timer-indicator">
+        <b class="timer-m">25</b>:<b class="timer-s">00</b>
       </div>
-    {{/each}}
+    </div>
+    <div class="timer-actions">
+      <a class="timer-action">R</a>
+      <a class="timer-action">SB</a>
+      <a class="timer-action">L</a>
+    </div>
   </section>
 </template>
 

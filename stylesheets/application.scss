@@ -7,6 +7,8 @@ $max-width: 100%;
 
 $fontSizeBase: 16px;
 
+$timerSize: 18em;
+
 $colorPomodoro: rgb(222, 52, 24);
 
 $transitionTimer: "0.1s ease-out";
@@ -35,6 +37,15 @@ $transitionTimer: "0.1s ease-out";
   }
 }
 
+@mixin onPomodoro {
+  @include transition(background-color #{$transitionTimer}, color #{$transitionTimer});
+
+  .on-pomodoro & {
+    color: $colorPomodoro;
+    background-color: white;
+  }
+}
+
 body,
 html {
   color: #333;
@@ -50,27 +61,27 @@ a {
 button {
   @include appearance(none);
   @include outlineHover;
-  background-color: transparent;
-  border: 0;
   background-color: $colorPomodoro;
+  border-radius: 3px;
+  border: 0;
   color: white;
   font-weight: bold;
   height: $unit;
-  padding: 0 1em;
   line-height: $unit;
-  border-radius: 3px;
   outline: none;
+  padding: 0 1em;
 
   &:active {
     background-color: shade($colorPomodoro, 10%);
   }
 }
 
-.section {
+.wrapper{
   @include pad(default);
+  @include transition(background-color #{$transitionTimer}, color #{$transitionTimer});
   background-color: white;
-  width: 100vw;
   min-height: 100vh;
+  width: 100vw;
 
   &.on-pomodoro {
     background-color: $colorPomodoro;
@@ -79,87 +90,44 @@ button {
 }
 
 .timer {
-  @include transition(background-color #{$transitionTimer}, color #{$transitionTimer});
-  color: $colorPomodoro;
+  @include position(absolute, 20% 0 20% 50%);
+  margin-left: -($timerSize / 2);
+  width: $timerSize;
 }
 
 .timer-toggle {
-  $size: 6em;
-  $margin:  -($size / 2);
+  @include circle($timerSize);
+  @include onPomodoro;
   @include outlineHover($large: true);
-  @include circle($size);
+  @include position(absolute, 0px 0 0 0px);
   background-color: $colorPomodoro;
   color: white;
   cursor: pointer;
-  font-size: 3em;
-  line-height: $size;
+  line-height: $timerSize;
   text-align: center;
 
-  .timer & {
-    @include position(absolute, 33% 0 0 50%);
-    margin: $margin 0 0 $margin;
-  }
+}
 
-  .on-pomodoro & {
-    color: $colorPomodoro;
-    background-color: white;
-  }
+.timer-indicator {
+  font-size: 3em;
 }
 
 .timer-actions {
   $width: 12.5em;
-  @include position(absolute, 0 0 10% 50%);
-  width: $width;
+  @include position(absolute, 0 0 0px 50%);
   margin-left: -($width / 2);
-
-  div {
-    @include circle(3em);
-    background-color: $colorPomodoro;
-    margin: 0 0.5em;
-    display: inline-block;
-  }
+  width: $width;
 }
 
-.pomodoros {
-  max-width: 12em * 4;
-  padding: 0;
-  margin: 0 auto;
-}
-
-%pomodoro {
-  $size: 10em;
-  margin: 1em;
-  @include size($size);
-  border-radius: $size / 2;
-  float: left;
-  padding:2em 1em;
-  text-align: center;
-  line-height: 1em;
-}
-
-.pomodoro {
-  @extend %pomodoro;
+.timer-action {
+  $size: 3em;
+  @include circle($size);
+  @include onPomodoro;
   @include outlineHover;
-  // background-color: $colorPomodoro;
-  color: $colorPomodoro;
-  border: 2px solid $colorPomodoro;
-}
-
-.pomodoro-new {
-  @extend %pomodoro;
-  background-color: transparent;
-  border: 2px dashed $colorPomodoro;
+  background-color: $colorPomodoro;
+  color: white;
+  display: inline-block;
+  line-height: $size;
+  margin: 0 0.5em;
   text-align: center;
-}
-
-.todos {
-  .timer-toggle {
-    margin: 0 auto $unit;
-  }
-}
-
-.todo {
-  &.is-done {
-    text-decoration: line-through;
-  }
 }
