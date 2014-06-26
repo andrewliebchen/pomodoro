@@ -103,7 +103,7 @@
 
               Session.set('onPomodoro', null);
 
-              $('.section.on-pomodoro').removeClass('on-pomodoro');
+              $('.wrapper.on-pomodoro').removeClass('on-pomodoro');
               $.APP.t1 += timerTotal;
 
               $.APP.resetTimer();
