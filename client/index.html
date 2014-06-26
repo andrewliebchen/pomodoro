@@ -23,7 +23,7 @@
     </div>
     <div class="timer-actions">
       <a class="timer-action">U</a>
-      <a class="timer-action">SB</a>
+      <a class="timer-action short-break">SB</a>
       <a class="timer-action todos-toggle">L</a>
     </div>
   </section>
@@ -32,8 +32,10 @@
 <template name="todos">
   <div class="todos">
     {{#each todo}}
-      <div class="todo">
-        <input type="checkbox" checked={{done}}>
+      <div class="todo{{#if done}} is-done{{/if}}">
+        <div class="checkbox-wrapper">
+          <input type="checkbox" checked={{done}}>
+        </div>
         {{title}}
       </div>
     {{/each}}

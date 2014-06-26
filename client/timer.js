@@ -14,7 +14,7 @@
         return a;
       },
 
-      startTimer : function(dir) {
+      startTimer : function(dir, time) {
         var a;
 
         // save type
@@ -36,8 +36,7 @@
             // get current timestamp (for calculations)
             $.APP.t1 = $.APP.d1.getTime();
 
-            // if countdown add ms based on seconds in textfield
-            $.APP.t1 += timerTotal;
+            $.APP.t1 += time;
 
           break;
         }

@@ -48,7 +48,7 @@ $transitionTimer: "0.1s ease-out";
 
 body,
 html {
-  color: #333;
+  color: #444;
   font-family: "avenir next", avenir, $helvetica;
   font-size: $fontSizeBase;
   line-height: $unit;
@@ -76,6 +76,42 @@ button {
   }
 }
 
+input[type="checkbox"] {
+  @include appearance(none);
+  @include size(1em);
+  border-radius: 3px;
+  border: 1px solid #444;
+  display: block;
+  float: left;
+  line-height: 1em;
+  outline: none;
+  text-align: center;
+
+  &::before {
+    @include position(relative, -1px 0 0 0);
+    color: inherit;
+    content: "";
+    font-size: 12px;
+  }
+
+  &:checked::before {
+    content: "✔";
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 2px rgba($colorPomodoro, 0.5);
+  }
+
+  .on-pomodoro & {
+    border-color: white;
+    color: white;
+
+    &:focus {
+      box-shadow: 0 0 0 2px rgba(white, 0.5);
+    }
+  }
+}
+
 .wrapper{
   @include pad(default);
   @include transition(background-color #{$transitionTimer}, color #{$transitionTimer});
@@ -90,7 +126,6 @@ button {
 }
 
 .timer {
-  @include transition(left 0.4s ease-in-out);
   @include position(fixed, 20% 0 20% 50%);
   margin-left: -($timerSize / 2);
   width: $timerSize;
@@ -141,9 +176,31 @@ button {
   display: none;
   width: 50%;
   @include position(absolute, 0px 0px 0 0);
-  @include pad(0 default 0 0);
+  @include pad(default default default 0);
 
   .show-todos & {
     display: block;
   }
+}
+
+.todo {
+  background-color: rgba(black, 0.1);
+  border-radius: 3px;
+  cursor: pointer;
+  margin-bottom: 0.5em;
+  padding: 0.5em 1em 0.5em 4em;
+  position: relative;
+
+  &.is-done {
+    text-decoration: line-through;
+  }
+}
+
+.checkbox-wrapper {
+  @include border-left-radius(3pm);
+  @include position(absolute, 0px 0 0px 0px);
+  background-color: rgba(black, 0.1);
+  display: inline-block;
+  min-width: 3em;
+  padding: 1em;
 }

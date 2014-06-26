@@ -1,3 +1,7 @@
+var pomodoroTime = (25 * 60) * 1000;
+var shortBreak   = (5 * 60) * 1000;
+var longBreak    = (10 * 60) * 1000;
+
 Session.setDefault('onPomodoro', null);
 Session.setDefault('showTodos', null);
 
@@ -15,10 +19,26 @@ Template.timer.events({
       $.APP.pauseTimer();
       Session.set('onPomodoro', null);
     } else {
-      $.APP.startTimer('timer');
+      $.APP.startTimer('timer', pomodoroTime);
       Session.set('onPomodoro', true);
     };
     $('.wrapper').toggleClass('on-pomodoro');
+  },
+
+  'click .short-break' : function(event) {
+    $this = $(event.target);
+    $.APP.startTimer('timer', shortBreak);
+
+    // Make this better
+    $this.toggleClass('short-break').toggleClass('long-break').text('LB');
+  },
+
+  'click .long-break' : function(event) {
+    $this = $(event.target);
+     $.APP.startTimer('timer', longBreak);
+
+     // Make this better
+     $this.toggleClass('short-break').toggleClass('long-break').text('SB');
   },
 
   'click .todos-toggle' : function() {
